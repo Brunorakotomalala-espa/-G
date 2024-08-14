@@ -59,7 +59,7 @@ async function claudeAI(text, userID, message, userName, commandName) {
 
 	try {
 		const query = `- Current prompt: ${text}\n\n - Conversation:\n${tracker[userID]}\n`;
-		const apiUrl = `https://api-samir.onrender.com/Claude3?prompt=${encodeURIComponent(query)}&apiKey=${apiKey}`;
+		const apiUrl = `https://hiroshi-rest-api.replit.app/ai/claude?ask=${encodeURIComponent(query)}&apiKey=${apiKey}`;
 		const response = await axios.get(apiUrl, {
 			headers: {
 				'Content-Type': 'application/json',
