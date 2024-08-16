@@ -1,13 +1,15 @@
 module.exports = {
-  config: {
-    name: "clear",
-    version: "1.0.0",
-    credits: "DungUwU (Khánh Milo Fix)",
-    description: "Désactiver l'anti-sortie",
-    usages: "annuler l'envoi",
-    cooldowns: 5
-  },
-
+  config: {
+    name: "clear",
+    version: "1.0",
+    author: "Vex_Kshitiz",
+    role: 0,
+    longDescription: "Supprimer message",
+    category: "unsend",
+    guide: {
+      en: "{p}clear [number]"
+    }
+  },
   onStart: async function ({ api, event, args }) {
     const { threadID, messageID, body } = event;
     const num = args[0];
