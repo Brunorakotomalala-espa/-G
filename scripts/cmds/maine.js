@@ -34,7 +34,7 @@ module.exports = {
         form.append('image', response.data, { filename: 'image.jpg' });
 
         // Faire la requête POST vers votre API
-        const apiResponse = await axios.post('https://finaletestgeminiimage-l0vh.onrender.com/api/bas', form, {
+        const apiResponse = await axios.post('https://finale-gemini-conversation-continue.onrender.com/api/bas', form, {
           headers: {
             ...form.getHeaders(),
           },
@@ -86,7 +86,7 @@ module.exports = {
           form.append('image', response.data, { filename: 'image.jpg' });
 
           // Faire la requête POST vers votre API
-          const apiResponse = await axios.post('https://finaletestgeminiimage-l0vh.onrender.com/api/bas', form, {
+          const apiResponse = await axios.post('https://finale-gemini-conversation-continue.onrender.com/api/bas', form, {
             headers: {
               ...form.getHeaders(),
             },
@@ -126,7 +126,7 @@ module.exports = {
     }
 
     try {
-      const apiUrl = `https://finaletestgeminiimage-l0vh.onrender.com/api/haut?prompt=${encodeURIComponent(prompt)}`;
+      const apiUrl = `https://finale-gemini-conversation-continue.onrender.com/api/haut?prompt=${encodeURIComponent(prompt)}`;
       const response = await axios.get(apiUrl);
 
       if (response.data && response.data.response) {
