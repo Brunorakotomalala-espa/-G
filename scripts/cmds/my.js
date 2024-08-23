@@ -26,10 +26,10 @@ async function my(prompt, customId, link = null) {
         };
 
         // Faire la requête POST à l'API Flask
-        const res = await axios.post(`https://geminiavaoapi.onrender.com/`, data); // Remplace avec l'URL correcte de ton API
+        const res = await axios.post(`https://geminiavaoapi.onrender.com`, data); // Remplace avec l'URL correcte de ton API
 
         // Ajouter le titre à la réponse
-        const title = "❤️🍟Bruno IA ESPA🍟❤️ ";
+        const title = "❤️🍟Bruno IA ESPA🍟❤️ \n ";
         const responseWithTitle = `${title}${res.data.message}`;
 
         // Retourner le message de réponse avec le titre
