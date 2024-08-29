@@ -92,9 +92,9 @@ module.exports = {
 
       if (signIndex >= 0 && signIndex < zodiacDates.length) {
         const chosenZodiac = zodiacDates[signIndex];
-        const horoscopeUrl = `https://ohmanda.com/api/horoscope/${chosenZodiac.sign}`;
         const todayDate = new Date().toISOString().split('T')[0]; // Date au format YYYY-MM-DD
-        
+        const horoscopeUrl = `https://ohmanda.com/api/horoscope/${chosenZodiac.sign}?date=${todayDate}`; // Ajouter la date à l'URL
+
         try {
           // Récupérer l'horoscope du signe choisi
           const horoscopeResponse = await axios.get(horoscopeUrl);
@@ -104,13 +104,10 @@ module.exports = {
           const frenchHoroscope = await translateText(horoscopeText, 'fr');
           const malagasyHoroscope = await translateText(horoscopeText, 'mg');
 
-          // Créer le message avec les traductions
+          // Créer le message avec les deux traductions
           const resultMessage = `
 Horoscope pour ${chosenZodiac.name} (${chosenZodiac.sign.charAt(0).toUpperCase() + chosenZodiac.sign.slice(1)}):
 Date: ${todayDate}
-\n
-En Anglais:
-${horoscopeText}
 \n
 En Français:
 ${frenchHoroscope}
@@ -119,7 +116,7 @@ En Malgache:
 ${malagasyHoroscope}
 `;
 
-          // Envoyer le message avec les traductions
+          // Envoyer le message avec les deux traductions
           api.sendMessage(resultMessage, event.threadID);
         } catch (error) {
           console.error('Erreur lors de la récupération de l\'horoscope:', error.message);
