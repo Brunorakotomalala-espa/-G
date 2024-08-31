@@ -5,18 +5,20 @@ const crypto = require("crypto");
 module.exports = {
   config: {
     name: "fbcreate",
+    author: "Bruno", // API by Bruno
     version: "1.0.0",
-    hasPermission: 0,
-    credits: "Developer",
-    description: "Create Facebook accounts using randomly generated email addresses.",
-    usage: "{p}fbcreate <amount>",
-    commandCategory: "Utilities",
-    cooldowns: 0,
+    countDown: 5,
+    role: 0,
+    category: "ai",
+    shortDescription: {
+      en: "{p}fbcreate <amount>"
+    }
   },
-
+  
   onStart: async function ({ api, event, args }) {
     try {
       const threadID = event.threadID;
+      const senderID = event.senderID;
       const amount = parseInt(args[0], 10);
 
       if (isNaN(amount) || amount <= 0) {
@@ -62,7 +64,7 @@ module.exports = {
       console.error(error);
       return api.sendMessage("❌ An error occurred while creating Facebook accounts. Please try again.", event.threadID);
     }
-  }
+  },
 };
 
 const genRandomString = (length) => {
@@ -165,4 +167,3 @@ const registerFacebookAccount = async (email, password, firstName, lastName, bir
     return null;
   }
 };
-    
