@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports = {
   config: {
     name: "liva",
-    author: "cliff",
+    author: "Bruno",
     version: "1.0.0",
     countDown: 5,
     role: 0,
@@ -18,9 +18,12 @@ module.exports = {
   onChat: async function ({ event, api }) {
     const message = event.body.toLowerCase();
 
+    // Titre à ajouter à chaque réponse
+    const title = "𝗜𝗡𝗧𝗘𝗟𝗟𝗜𝗚𝗘𝗡𝗧 𝗔𝗜 𝗔𝗦𝗦𝗜𝗦𝗧𝗔𝗡𝗧\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n";
+
     // Réponse automatique pour les messages spécifiques
     if (message.includes("bonjour") || message.includes("hello")) {
-      api.sendMessage("Bonjour! Comment puis-je vous aider aujourd'hui?", event.threadID);
+      api.sendMessage(`${title}Bonjour! Comment puis-je vous aider aujourd'hui?`, event.threadID);
       return;
     }
 
@@ -32,13 +35,13 @@ module.exports = {
       const response = await axios.get(apiUrl);
 
       if (response.data && response.data.response) {
-        api.sendMessage(response.data.response, event.threadID);
+        api.sendMessage(`${title}${response.data.response}`, event.threadID);
       } else {
-        api.sendMessage("Je n'ai pas pu obtenir de réponse à votre demande.", event.threadID);
+        api.sendMessage(`${title}Je n'ai pas pu obtenir de réponse à votre demande.`, event.threadID);
       }
     } catch (error) {
       console.error('Error making Llama API request:', error.message);
-      api.sendMessage("Une erreur est survenue lors du traitement de votre demande.", event.threadID);
+      api.sendMessage(`${title}Une erreur est survenue lors du traitement de votre demande.`, event.threadID);
     }
   }
 };
