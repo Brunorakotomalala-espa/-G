@@ -2,7 +2,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
     config: {
-        name: "autoapprove",
+        name: "autoapprouve",
         version: "1.0",
         author: "Danny will",
         countDown: 13,
