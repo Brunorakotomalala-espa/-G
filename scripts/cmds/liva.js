@@ -19,7 +19,7 @@ module.exports = {
     const message = event.body.toLowerCase();
 
     // Titre à ajouter à chaque réponse
-    const title = "𝗜𝗡𝗧𝗘𝗟𝗟𝗜𝗚𝗘𝗡𝗧 𝗔𝗜 𝗔𝗦𝗦𝗜𝗦𝗧𝗔𝗡𝗧\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n";
+    const title = "𝗜𝗡𝗧𝗘𝗟𝗟𝗜𝗚𝗘𝗡𝗧 𝗔𝗜\n▬▬▬▬▬▬▬▬▬▬\n";
 
     // Réponse automatique pour les messages spécifiques
     if (message.includes("bonjour") || message.includes("hello")) {
