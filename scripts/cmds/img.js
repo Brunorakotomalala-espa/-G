@@ -3,7 +3,7 @@ const axios = require("axios");
 // Dictionnaire pour stocker l'historique des conversations par utilisateur
 let conversationHistory = {};
 
-// Fonction modifiée pour ajouter un titre à la réponse
+// Fonction modifiée pour gérer l'historique complet
 async function img(prompt, customId, link = null) {
     try {
         // Initialiser l'historique pour l'utilisateur s'il n'existe pas
@@ -18,9 +18,12 @@ async function img(prompt, customId, link = null) {
             conversationHistory[customId].push({ prompt });
         }
 
+        // Construire le message avec l'historique complet
+        let fullPrompt = conversationHistory[customId].map(entry => entry.link ? `Image: ${entry.link}` : entry.prompt).join("\n");
+
         // Préparer les données pour l'API
         const data = {
-            prompt,
+            prompt: fullPrompt,
             customId,
             link // Lien de l'image s'il est présent
         };
