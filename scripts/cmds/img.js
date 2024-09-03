@@ -8,28 +8,31 @@ async function img(prompt, customId, link = null) {
     try {
         // Initialiser l'historique pour l'utilisateur s'il n'existe pas
         if (!conversationHistory[customId]) {
-            conversationHistory[customId] = [];
+            conversationHistory[customId] = { prompts: [], lastResponse: "" };
         }
 
-        // Ajouter la nouvelle entrée (texte et/ou lien de l'image) à l'historique
+        // Ajouter le nouveau prompt à l'historique
         if (link) {
-            conversationHistory[customId].push({ prompt: "Image reçue", link });
+            conversationHistory[customId].prompts.push({ prompt: "Image reçue", link });
         } else {
-            conversationHistory[customId].push({ prompt });
+            conversationHistory[customId].prompts.push({ prompt });
         }
 
-        // Construire le message avec l'historique complet
-        let fullPrompt = conversationHistory[customId].map(entry => entry.link ? `Image: ${entry.link}` : entry.prompt).join("\n");
+        // Construire un résumé du contexte à partir des prompts précédents sans inclure la dernière réponse
+        let context = conversationHistory[customId].prompts.map(entry => entry.link ? `Image: ${entry.link}` : entry.prompt).join("\n");
 
-        // Préparer les données pour l'API
+        // Préparer les données pour l'API (seulement le dernier prompt)
         const data = {
-            prompt: fullPrompt,
+            prompt: prompt,
             customId,
             link // Lien de l'image s'il est présent
         };
 
-        // Faire la requête POST à l'API Flask
+        // Faire la requête POST à l'API Flask avec le dernier prompt uniquement
         const res = await axios.post(`https://app-j3tw.vercel.app/api/gemini`, data); // Remplace avec l'URL correcte de ton API
+
+        // Stocker la nouvelle réponse
+        conversationHistory[customId].lastResponse = res.data.message;
 
         // Ajouter le titre à la réponse
         const title = "❤️🍟Bruno IA ESPA🍟❤️ \n ";
