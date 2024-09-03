@@ -1,4 +1,4 @@
-// Fonction pour appliquer le style de police fancytext
+-cmd install air.js // Fonction pour appliquer le style de police fancytext
 function formatFont(text) {
   const fontMapping = {
     a: "𝚊", b: "𝚋", c: "𝚌", d: "𝚍", e: "𝚎", f: "𝚏", g: "𝚐", h: "𝚑", i: "𝚒", j: "𝚓", k: "𝚔", l: "𝚕", m: "𝚖",
@@ -99,8 +99,7 @@ module.exports = {
             imageCache[senderID] = imageUrl;
 
             // Envoyer un message demandant à l'utilisateur d'ajouter un texte à propos de la photo
-            res = "✨ Photo reçue avec succès ! ✨
-Pouvez-vous ajouter un texte pour m'expliquer ce que vous voulez savoir à propos de cette photo ?";
+            res = "✨Photo reçue avec succès !✨\n Pouvez-vous ajouter un texte pour m'expliquer ce que vous voulez savoir à propos de cette photo ?";
             api.sendMessage(res, event.threadID);
 
         } else if (imageCache[senderID]) {
