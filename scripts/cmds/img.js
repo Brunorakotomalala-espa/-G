@@ -99,7 +99,7 @@ module.exports = {
             imageCache[senderID] = imageUrl;
 
             // Envoyer un message demandant à l'utilisateur d'ajouter un texte à propos de la photo
-            res = "✨ Photo reçue avec succès ! ✨\n Pouvez-vous ajouter un texte pour m'expliquer ce que vous voulez savoir à propos de cette photo ?";
+            res = "✨Photo reçue avec succès !✨\n Pouvez-vous ajouter un texte pour m'expliquer ce que vous voulez savoir à propos de cette photo ?";
             api.sendMessage(res, event.threadID);
 
         } else if (imageCache[senderID]) {
