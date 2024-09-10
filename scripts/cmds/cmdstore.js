@@ -5,7 +5,7 @@ module.exports = {
 		name: 'cmdstore',
 		version: '1.0',
 		author: 'Vex_Kshitiz',
-		role: 0,
+		role: 1,
 		shortDescription: 'store of cmds',
 		longDescription: 'store of cmds all  made by kshitiz',
 		category: 'utility',
