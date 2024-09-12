@@ -31,7 +31,7 @@ async function principe(prompt, customId, link = null) {
             link
         };
 
-        const res = await axios.post(`https://app-likg.vercel.app/api/Gemini`, data); // Remplacé avec la nouvelle URL de l'API
+        const res = await axios.post(`https://gemini-ap-espa-bruno.onrender.com/api/gemini`, data); // Remplacé avec la nouvelle URL de l'API
 
         conversationHistory[customId].lastResponse = res.data.message;
 
