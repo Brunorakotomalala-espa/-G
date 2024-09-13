@@ -5,6 +5,7 @@ const log = require("./logger/log.js");
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
+const { RsnChat } = require('rsnchat');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,12 +13,13 @@ const port = process.env.PORT || 3000;
 // Lire les tokens depuis les variables d'environnement
 const pageAccessToken = process.env.PAGE_ACCESS_TOKEN;
 const verificationToken = process.env.VERIFY_TOKEN;
+const rsnchatApiKey = process.env.RSNCHAT_API_KEY;
 
-if (!pageAccessToken || !verificationToken) {
-    throw new Error('PAGE_ACCESS_TOKEN and VERIFY_TOKEN must be set in the environment variables.');
+if (!pageAccessToken || !verificationToken || !rsnchatApiKey) {
+    throw new Error('PAGE_ACCESS_TOKEN, VERIFY_TOKEN, and RSNCHAT_API_KEY must be set in the environment variables.');
 }
 
-const rsnchat = new RsnChat(pageAccessToken);
+const rsnchat = new RsnChat(rsnchatApiKey); // Utilisez la clé API RSNChat depuis les variables d'environnement
 
 function startProject() {
     const child = spawn("node", ["Goat.js"], {
@@ -41,10 +43,6 @@ startProject();
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'temp', 'chatbot.html'));
 });
-
-const { RsnChat } = require('rsnchat');
-
-const rsnchat = new RsnChat('rsnai_C5Y6ZSoUt3LRAWopF6PQ2Uef');
 
 app.get('/architecture', async (req, res) => {
     const query = req.query.ask;
