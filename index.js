@@ -5,7 +5,6 @@ const log = require("./logger/log.js");
 const express = require('express');
 const axios = require('axios');
 const path = require('path');
-const { RsnChat } = require('rsnchat');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -42,6 +41,10 @@ startProject();
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'temp', 'chatbot.html'));
 });
+
+const { RsnChat } = require('rsnchat');
+
+const rsnchat = new RsnChat('rsnai_C5Y6ZSoUt3LRAWopF6PQ2Uef');
 
 app.get('/architecture', async (req, res) => {
     const query = req.query.ask;
