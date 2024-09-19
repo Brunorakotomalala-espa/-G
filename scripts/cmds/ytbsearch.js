@@ -2,7 +2,7 @@ const axios = require('axios');
 
 module.exports = {
   config: {
-    name: "ytsearch",
+    name: "ytbsearch",
     author: "cliff",
     version: "1.0.0",
     countDown: 5,
@@ -29,12 +29,13 @@ module.exports = {
       // Faire la requête à l'API
       const response = await axios.get(apiUrl);
 
-      if (response.data && response.data.results) {
-        const videoList = response.data.results;
+      // Adapter la logique pour correspondre à la structure réelle de la réponse JSON
+      if (response.data && Array.isArray(response.data)) {
+        const videoList = response.data;
         let message = "Voici les 10 premières vidéos trouvées :\n\n";
 
         videoList.forEach((video, index) => {
-          message += `${index + 1}. ${video.title} (${video.duration})\n`;
+          message += `${index + 1}. ${video.title} (${video.time})\n`;
         });
 
         message += "\nRépondez avec le numéro de la vidéo que vous souhaitez télécharger, et précisez MP4 ou MP3.";
@@ -104,3 +105,4 @@ module.exports = {
     }
   }
 };
+                                                      
